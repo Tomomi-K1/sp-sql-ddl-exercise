@@ -21,6 +21,13 @@ CREATE TABLE airline
   name TEXT NOT NULL
 );
 
+CREATE TABLE city_country
+(
+  id SERIAL PRIMARY KEY,
+  city_name TEXT,
+  country_name TEXT
+);
+
 CREATE TABLE plane_schedule
 (
   id SERIAL PRIMARY KEY,
@@ -29,13 +36,6 @@ CREATE TABLE plane_schedule
   airline_id INT NOT NULL REFERENCES airline,
   from_city INT NOT NULL REFERENCES city_country,
   to_city INT NOT NULL REFERENCES city_country
-);
-
-CREATE TABLE city_country
-(
-  id SERIAL PRIMARY KEY,
-  city_name TEXT,
-  country_name TEXT
 );
 
 CREATE TABLE flight
@@ -57,13 +57,7 @@ VALUES
 VALUES
   ('United'),
   ('British Airways');
- 
- INSERT INTO plane_schedule
-  (departure, arrival, airline_id, from_city, to_city)
-VALUES
-  ('2018-04-08 09:00:00', '2018-04-08 12:00:00', 1, 1, 2),
-  ('2018-12-19 12:45:00', '2018-12-19 16:15:00', 2, 3, 4);
- 
+
  INSERT INTO city_country
   (city_name, country_name)
 VALUES
@@ -71,6 +65,12 @@ VALUES
   ('Seattle', 'United States'),
   ('Tokyo', 'Japan'),
   ('London', 'United Kingdom');
+  
+ INSERT INTO plane_schedule
+  (departure, arrival, airline_id, from_city, to_city)
+VALUES
+  ('2018-04-08 09:00:00', '2018-04-08 12:00:00', 1, 1, 2),
+  ('2018-12-19 12:45:00', '2018-12-19 16:15:00', 2, 3, 4);
  
  INSERT INTO flight
   (passenger_id, plane_schedule_id)
