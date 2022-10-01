@@ -10,21 +10,20 @@ CREATE DATABASE music;
 CREATE TABLE artist
 (
   id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL
-  
+  artist_name TEXT NOT NULL 
 );
 
 CREATE TABLE album
 (
   id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL
+  title TEXT NOT NULL
 );
 
 
 CREATE TABLE producer
 (
   id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL
+  producer_name TEXT NOT NULL
 );
 
 CREATE TABLE songs
@@ -33,8 +32,7 @@ CREATE TABLE songs
   title TEXT NOT NULL,
   duration_in_seconds INTEGER NOT NULL,
   release_date DATE NOT NULL,
-  album_id INT NOT NULL REFERENCES album,
-  producer_id INT NOT NULL REFERENCES producer
+  album_id INT NOT NULL REFERENCES album
 );
 
 CREATE TABLE song_artist
@@ -49,3 +47,42 @@ CREATE TABLE song_producer
   producer_id INT NOT NULL REFERENCES producer
 );
 
+INSERT INTO artist
+  (artist_name)
+VALUES
+  ('Hanson'),
+  ('Test Singer'),
+  ('Queen');
+
+INSERT INTO album
+  (title)
+VALUES
+  ('Middle of Nowhere'),
+  ('A Night at the Opera');
+
+INSERT INTO producer
+  (producer_name)
+VALUES
+  ('Dust Brothers'),
+  ('Stephen Lironi'),
+  ('Roy Thomas Baker');
+
+INSERT INTO songs
+  (title, duration_in_seconds, release_date, album_id)
+VALUES
+  ('MMMBop', 238, '04-15-1997', 1),
+  ('Bohemian Rhapsody', 355, '10-31-1975', 2);
+
+  INSERT INTO song_artist
+  (song_id, artist_id)
+VALUES
+  (1, 1),
+  (1, 3),
+  (2, 2);
+
+  INSERT INTO song_producer
+  (song_id, producer_id)
+VALUES
+  (1, 1),
+  (1, 2),
+  (2, 3);
