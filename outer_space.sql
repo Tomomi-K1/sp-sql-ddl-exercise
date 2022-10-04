@@ -44,9 +44,6 @@ VALUES
   (name)
 VALUES
   ('The Sun'),
-  ('The Sun'),
-  ('The Sun'),
-  ('The Sun'),
   ('Proxima Centauri b'),
   ('Gliese 876 b');
 
